@@ -1,0 +1,13 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="welcome">
+    <h2>Добро пожаловать в менеджер проектов!</h2>
+    <p>Здесь вы можете:</p>
+    <ul>
+        <li><a href="{{ url_for('list_projects') }}">Просмотреть все проекты</a></li>
+        <li><a href="{{ url_for('add_project') }}">Добавить новый проект</a></li>
+    </ul>
+</div>
+{% endblock %}

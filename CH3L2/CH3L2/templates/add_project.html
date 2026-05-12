@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Добавить проект{% endblock %}
+
+{% block content %}
+<h2>Добавить новый проект</h2>
+<form method="POST">
+    <div>
+        <label for="project_name">Название проекта:</label>
+        <input type="text" id="project_name" name="project_name" required>
+    </div>
+    <div>
+        <label for="description">Описание:</label>
+        <textarea id="description" name="description"></textarea>
+    </div>
+    <div>
+        <label for="url">Ссылка:</label>
+        <input type="url" id="url" name="url">
+    </div>
+    <div>
+        <label for="status_name">Статус:</label>
+        <select id="status_name" name="status_name" required>
+            {% for status in statuses %}
+            <option value="{{ status }}">{{ status }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div>
+        <label>Навыки:</label>
+        {% for skill in skills %}
+        <div>
+            <input type="checkbox" id="skill_{{ loop.index }}" name="skills" value="{{ skill }}">
+            <label for="skill_{{ loop.index }}">{{ skill }}</label>
+        </div>
+        {% endfor %}
+    </div>
+    <button type="submit">Сохранить проект</button>
+    <a href="{{ url_for('list_projects') }}">Назад к списку</a>
+</form>
+{% endblock %}

@@ -1,0 +1,35 @@
+
+{% extends "base.html" %}
+
+{% block title %}{{ project[2] }}{% endblock %}
+
+{% block content %}
+<div class="project-detail">
+    <h2>{{ project[2] }}</h2>  <!-- project_name -->
+    <p><strong>Описание:</strong> {{ project[3] or 'Нет описания' }}</p>  <!-- description -->
+    <p><strong>Ссылка:</strong>
+        {% if project[4] %}
+        <a href="{{ project[4] }}" target="_blank">{{ project[4] }}</a>
+        {% else %}
+        Не указана
+        {% endif %}
+    </p>
+    <p><strong>Статус:</strong> {{ project[-1] }}</p>  <!-- status_name -->
+
+    <h3>Навыки:</h3>
+    <ul>
+        {% for skill in skills %}
+        <li>{{ skill }}</li>
+        {% else %}
+        <li>Навыки не указаны</li>
+        {% endfor %}
+    </ul>
+
+    <div class="actions">
+        <form action="{{ url_for('delete_project', project_id=project[0]) }}" method="POST" style="display:inline;">
+            <button type="submit" class="btn-delete">Удалить проект</button>
+        </form>
+        <a href="{{ url_for('list_projects') }}">Назад к списку</a>
+    </div>
+</div>
+{% endblock %}
